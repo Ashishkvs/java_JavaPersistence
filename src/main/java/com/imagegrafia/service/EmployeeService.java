@@ -14,10 +14,13 @@ public class EmployeeService {
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
-	public Optional<Employee> getEmployee() {
-		Optional<Employee> findIdByName = employeeRepository.findIdByName("ashiah@gmail.com");
-		
-		System.out.println(findIdByName);
-		return employeeRepository.findNameById(1);
+	//get emp by id
+	public Optional<Employee> getEmployee(int id) {
+		return employeeRepository.findAllById(id);
+	}
+	
+	//get id by name
+	public Optional<Employee> getEmployeeId(String name){
+		return employeeRepository.findIdByName(name);
 	}
 }

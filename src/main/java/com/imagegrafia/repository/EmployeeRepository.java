@@ -11,9 +11,14 @@ import com.imagegrafia.entity.Employee;
 @Repository
 public interface EmployeeRepository extends org.springframework.data.repository.Repository<Employee, Integer> {
 	
-	
-	@Query("SELECT t.name FROM Employee t where t.id = :id") 
-    Optional<Employee> findNameById(@Param("id") Integer id);
+	/**
+	 * by default nativeQuery=false
+	 * so select * gives exception
+	 * @param id
+	 * @return
+	 */
+	@Query(value="SELECT * FROM Employee t where t.id = :id",nativeQuery = true) 
+    Optional<Employee> findAllById(@Param("id") Integer id);
 	
 	@Query("SELECT t.id FROM Employee t where t.name = :name") 
     Optional<Employee> findIdByName(@Param("name") String name);
